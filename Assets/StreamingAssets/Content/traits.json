@@ -1,0 +1,94 @@
+{
+  "traits": [
+    {
+      "id": "active",
+      "name": "Active",
+      "description": "Loves to move. Gets restless and sweaty faster, loves exercise.",
+      "decayMultipliers": [ { "need": "Hygiene", "amount": 1.2 }, { "need": "Fun", "amount": 1.1 } ],
+      "likes": [ "exercise", "fun" ],
+      "dislikes": [ "relax" ],
+      "charm": 1.0
+    },
+    {
+      "id": "lazy",
+      "name": "Lazy",
+      "description": "Tires faster, adores naps and the couch.",
+      "decayMultipliers": [ { "need": "Energy", "amount": 1.3 } ],
+      "likes": [ "relax", "sleep" ],
+      "dislikes": [ "exercise", "work" ],
+      "charm": 0.9
+    },
+    {
+      "id": "social",
+      "name": "Social Butterfly",
+      "description": "Needs company, makes friends easily.",
+      "decayMultipliers": [ { "need": "Social", "amount": 1.4 } ],
+      "likes": [ "social" ],
+      "dislikes": [ "study" ],
+      "charm": 1.4
+    },
+    {
+      "id": "loner",
+      "name": "Loner",
+      "description": "Happy on their own, slow to warm up.",
+      "decayMultipliers": [ { "need": "Social", "amount": 0.6 } ],
+      "likes": [ "study", "art" ],
+      "dislikes": [ "social" ],
+      "charm": 0.7
+    },
+    {
+      "id": "creative",
+      "name": "Creative",
+      "description": "Gets Fun from making things.",
+      "decayMultipliers": [ { "need": "Fun", "amount": 1.2 } ],
+      "likes": [ "art", "fun" ],
+      "dislikes": [ "work" ],
+      "charm": 1.1
+    },
+    {
+      "id": "bookworm",
+      "name": "Bookworm",
+      "description": "Studying and reading are fun.",
+      "decayMultipliers": [],
+      "likes": [ "study" ],
+      "dislikes": [ "fun" ],
+      "charm": 0.95
+    },
+    {
+      "id": "foodie",
+      "name": "Foodie",
+      "description": "Gets hungry fast and loves to eat.",
+      "decayMultipliers": [ { "need": "Hunger", "amount": 1.4 } ],
+      "likes": [ "eat" ],
+      "dislikes": [],
+      "charm": 1.0
+    },
+    {
+      "id": "neat",
+      "name": "Neat Freak",
+      "description": "Hygiene matters a lot.",
+      "decayMultipliers": [ { "need": "Hygiene", "amount": 1.5 } ],
+      "likes": [ "hygiene" ],
+      "dislikes": [],
+      "charm": 1.0
+    },
+    {
+      "id": "ambitious",
+      "name": "Ambitious",
+      "description": "Driven to earn and learn.",
+      "decayMultipliers": [ { "need": "Fun", "amount": 1.1 } ],
+      "likes": [ "work", "study" ],
+      "dislikes": [ "relax" ],
+      "charm": 1.0
+    },
+    {
+      "id": "cheerful",
+      "name": "Cheerful",
+      "description": "Gets Fun from almost anything and is easy to like.",
+      "decayMultipliers": [ { "need": "Fun", "amount": 0.7 } ],
+      "likes": [ "social", "fun" ],
+      "dislikes": [],
+      "charm": 1.3
+    }
+  ]
+}

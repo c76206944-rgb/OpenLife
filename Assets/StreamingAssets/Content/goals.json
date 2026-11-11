@@ -1,0 +1,11 @@
+{
+  "goals": [
+    { "id": "study_once", "title": "Study or read", "eventId": "study", "target": 1, "reward": 100 },
+    { "id": "make_friend", "title": "Make a friend", "eventId": "friend_made", "target": 1, "reward": 200 },
+    { "id": "exercise_once", "title": "Exercise", "eventId": "exercise", "target": 1, "reward": 100 },
+    { "id": "eat_three", "title": "Eat 3 meals", "eventId": "eat", "target": 3, "reward": 150 },
+    { "id": "be_creative", "title": "Make some art", "eventId": "art", "target": 2, "reward": 250 },
+    { "id": "earn_money", "title": "Work 3 times", "eventId": "work", "target": 3, "reward": 300 },
+    { "id": "chat_five", "title": "Chat 5 times", "eventId": "chat", "target": 5, "reward": 250 }
+  ]
+}

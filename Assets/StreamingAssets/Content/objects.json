@@ -1,0 +1,110 @@
+{
+  "objects": [
+    { "id": "floor_wood", "name": "Wood Floor", "category": "Floor", "price": 5, "sizeX": 1, "sizeZ": 1, "height": 0.04, "shape": "box", "color": "#b98a5a", "interactions": [] },
+    { "id": "floor_tile", "name": "Tile Floor", "category": "Floor", "price": 6, "sizeX": 1, "sizeZ": 1, "height": 0.04, "shape": "box", "color": "#d9dde0", "interactions": [] },
+    { "id": "floor_stone", "name": "Stone Floor", "category": "Floor", "price": 6, "sizeX": 1, "sizeZ": 1, "height": 0.04, "shape": "box", "color": "#8f8f94", "interactions": [] },
+    { "id": "floor_carpet", "name": "Carpet", "category": "Floor", "price": 8, "sizeX": 1, "sizeZ": 1, "height": 0.04, "shape": "box", "color": "#a45a5a", "interactions": [] },
+
+    { "id": "wall_basic", "name": "Wall", "category": "Wall", "price": 20, "sizeX": 1, "sizeZ": 1, "height": 2.6, "shape": "box", "color": "#e8e2d6", "interactions": [] },
+    { "id": "wall_brick", "name": "Brick Wall", "category": "Wall", "price": 28, "sizeX": 1, "sizeZ": 1, "height": 2.6, "shape": "box", "color": "#a85a45", "interactions": [] },
+    { "id": "doorway", "name": "Doorway", "category": "Wall", "price": 30, "sizeX": 1, "sizeZ": 1, "height": 2.6, "shape": "lintel", "color": "#e8e2d6", "interactions": [] },
+
+    {
+      "id": "bed_single", "name": "Single Bed", "category": "Furniture", "price": 400,
+      "sizeX": 1, "sizeZ": 2, "height": 0.55, "shape": "box", "color": "#6f8fd0",
+      "interactions": [
+        { "id": "sleep", "name": "Sleep", "tag": "sleep", "minutes": 420, "effects": [ { "need": "Energy", "amount": 100 }, { "need": "Bladder", "amount": -30 }, { "need": "Hunger", "amount": -20 } ] },
+        { "id": "nap", "name": "Take a Nap", "tag": "sleep", "minutes": 90, "effects": [ { "need": "Energy", "amount": 30 } ] }
+      ]
+    },
+    {
+      "id": "sofa", "name": "Sofa", "category": "Furniture", "price": 450,
+      "sizeX": 2, "sizeZ": 1, "height": 0.8, "shape": "box", "color": "#8a5a8f",
+      "interactions": [
+        { "id": "relax_sofa", "name": "Relax", "tag": "relax", "minutes": 60, "effects": [ { "need": "Energy", "amount": 10 }, { "need": "Fun", "amount": 15 } ] },
+        { "id": "nap_sofa", "name": "Nap on Sofa", "tag": "sleep", "minutes": 90, "effects": [ { "need": "Energy", "amount": 25 } ] }
+      ]
+    },
+    {
+      "id": "chair", "name": "Chair", "category": "Furniture", "price": 60,
+      "sizeX": 1, "sizeZ": 1, "height": 0.9, "shape": "box", "color": "#b07a45",
+      "interactions": [
+        { "id": "sit", "name": "Sit and Relax", "tag": "relax", "minutes": 30, "effects": [ { "need": "Energy", "amount": 4 }, { "need": "Fun", "amount": 5 } ] }
+      ]
+    },
+    { "id": "table", "name": "Dining Table", "category": "Furniture", "price": 180, "sizeX": 2, "sizeZ": 1, "height": 0.75, "shape": "box", "color": "#9a6b3f", "interactions": [] },
+    {
+      "id": "desk", "name": "Desk", "category": "Furniture", "price": 220,
+      "sizeX": 2, "sizeZ": 1, "height": 0.8, "shape": "box", "color": "#7a5a3a",
+      "interactions": [
+        { "id": "study_desk", "name": "Study", "tag": "study", "minutes": 120, "effects": [ { "need": "Fun", "amount": -10 }, { "need": "Energy", "amount": -10 } ], "goalEvent": "study" },
+        { "id": "work_desk", "name": "Work", "tag": "work", "minutes": 180, "effects": [ { "need": "Fun", "amount": -15 }, { "need": "Energy", "amount": -15 }, { "need": "Hunger", "amount": -10 } ], "money": 120, "goalEvent": "work" }
+      ]
+    },
+    {
+      "id": "bookshelf", "name": "Bookshelf", "category": "Furniture", "price": 240,
+      "sizeX": 1, "sizeZ": 1, "height": 1.9, "shape": "box", "color": "#6b4a2f",
+      "interactions": [
+        { "id": "read", "name": "Read a Book", "tag": "study", "minutes": 60, "effects": [ { "need": "Fun", "amount": 25 } ], "goalEvent": "study" }
+      ]
+    },
+
+    {
+      "id": "fridge", "name": "Fridge", "category": "Appliance", "price": 600,
+      "sizeX": 1, "sizeZ": 1, "height": 1.8, "shape": "box", "color": "#d9e2e8",
+      "interactions": [
+        { "id": "snack", "name": "Grab a Snack", "tag": "eat", "minutes": 20, "effects": [ { "need": "Hunger", "amount": 35 } ] },
+        { "id": "cook", "name": "Cook a Meal", "tag": "eat", "minutes": 45, "effects": [ { "need": "Hunger", "amount": 80 }, { "need": "Hygiene", "amount": -5 } ], "goalEvent": "eat" }
+      ]
+    },
+    {
+      "id": "tv", "name": "TV", "category": "Appliance", "price": 500,
+      "sizeX": 2, "sizeZ": 1, "height": 1.0, "shape": "box", "color": "#202226",
+      "interactions": [
+        { "id": "watch_tv", "name": "Watch TV", "tag": "fun", "minutes": 60, "effects": [ { "need": "Fun", "amount": 50 } ] }
+      ]
+    },
+    {
+      "id": "stereo", "name": "Stereo", "category": "Appliance", "price": 300,
+      "sizeX": 1, "sizeZ": 1, "height": 0.9, "shape": "box", "color": "#40454d",
+      "interactions": [
+        { "id": "music", "name": "Listen to Music", "tag": "fun", "minutes": 45, "effects": [ { "need": "Fun", "amount": 35 } ] },
+        { "id": "dance", "name": "Dance", "tag": "fun", "minutes": 30, "effects": [ { "need": "Fun", "amount": 40 }, { "need": "Energy", "amount": -10 }, { "need": "Hygiene", "amount": -10 } ], "goalEvent": "exercise" }
+      ]
+    },
+
+    {
+      "id": "toilet", "name": "Toilet", "category": "Bathroom", "price": 250,
+      "sizeX": 1, "sizeZ": 1, "height": 0.5, "shape": "cylinder", "color": "#f2f2f2",
+      "interactions": [
+        { "id": "use_toilet", "name": "Use Toilet", "tag": "bladder", "minutes": 10, "effects": [ { "need": "Bladder", "amount": 100 } ] }
+      ]
+    },
+    {
+      "id": "shower", "name": "Shower", "category": "Bathroom", "price": 450,
+      "sizeX": 1, "sizeZ": 1, "height": 2.2, "shape": "box", "color": "#9fd0e8",
+      "interactions": [
+        { "id": "take_shower", "name": "Take a Shower", "tag": "hygiene", "minutes": 20, "effects": [ { "need": "Hygiene", "amount": 100 } ] }
+      ]
+    },
+
+    {
+      "id": "treadmill", "name": "Treadmill", "category": "Hobby", "price": 700,
+      "sizeX": 1, "sizeZ": 2, "height": 1.0, "shape": "box", "color": "#3c4048",
+      "interactions": [
+        { "id": "run", "name": "Exercise", "tag": "exercise", "minutes": 45, "effects": [ { "need": "Energy", "amount": -15 }, { "need": "Fun", "amount": 10 }, { "need": "Hygiene", "amount": -15 }, { "need": "Hunger", "amount": -10 } ], "goalEvent": "exercise" }
+      ]
+    },
+    {
+      "id": "easel", "name": "Easel", "category": "Hobby", "price": 200,
+      "sizeX": 1, "sizeZ": 1, "height": 1.5, "shape": "box", "color": "#c9a66b",
+      "interactions": [
+        { "id": "paint", "name": "Paint", "tag": "art", "minutes": 90, "effects": [ { "need": "Fun", "amount": 45 }, { "need": "Energy", "amount": -5 } ], "goalEvent": "art" }
+      ]
+    },
+
+    { "id": "plant", "name": "Potted Plant", "category": "Decor", "price": 40, "sizeX": 1, "sizeZ": 1, "height": 1.0, "shape": "capsule", "color": "#3f9f4a", "interactions": [] },
+    { "id": "lamp", "name": "Floor Lamp", "category": "Decor", "price": 70, "sizeX": 1, "sizeZ": 1, "height": 1.7, "shape": "cylinder", "color": "#f0d890", "interactions": [] },
+    { "id": "ball", "name": "Decor Sphere", "category": "Decor", "price": 25, "sizeX": 1, "sizeZ": 1, "height": 0.8, "shape": "sphere", "color": "#d06f6f", "interactions": [] }
+  ]
+}
