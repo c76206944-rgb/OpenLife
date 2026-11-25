@@ -30,6 +30,16 @@ Use assets that you own or have a license to redistribute in the game. Do not co
 - `SimFactory` now loads `modelId` from Resources and retains a detailed placeholder fallback for old saves and Sims without a model assigned.
 - Add furniture and building prefabs under `Assets/Resources/Furniture/` and use the object's `prefab` Resources-relative path in `objects.json`. Keep interaction definitions and object IDs unchanged so existing save files still resolve.
 
+## Recommended legal character asset sources
+
+The project currently contains no imported production character meshes. These are candidate sources for a real art pass; check the exact pack licence again at download time and retain any required attribution:
+
+- [Ara 3D Gen](https://github.com/Jijjy/humanoid-maker): open-source character generator built around CC0 MakeHuman assets, with export to FBX/GLB and a large animation library. Strongest route to customizable realistic human proportions; generate/export models, then import the FBX into Unity as Humanoid.
+- [Vinish free rigged people](https://vinish.dev/free-3d-models/people): eight rigged human GLB models with idle/walk/run clips, listed under CC BY 4.0. If used, include the creator attribution in the shipped credits.
+- [Quaternius Universal Base Characters](https://quaternius.com/packs/universalbasecharacters.html): rigged bases and hair assets, but more stylized than the Sims 5 realism target. Quaternius publishes its own asset licence; review it before shipping.
+
+The `SimAnimationDriver` now optionally maps a prefab Animator Controller's `Speed` (float), `IsMoving` (bool), and `IsSleeping` (bool) parameters to the existing Sim navigation and interaction state. Missing parameters are ignored. Create transitions/clips in the Animator Controller; the driver does not invent animation clips.
+
 ## Repeatable player builds
 
 Open the project in Unity 6.0.23f1 and use the `OpenLife/Build` menu:
