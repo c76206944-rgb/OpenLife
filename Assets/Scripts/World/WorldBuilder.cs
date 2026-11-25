@@ -86,7 +86,10 @@ namespace OpenLife
                 sun.type = LightType.Directional;
                 sun.shadows = LightShadows.Soft;
             }
-            RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Flat;
+            RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Trilight;
+            RenderSettings.ambientSkyColor = new Color(0.72f, 0.79f, 0.9f);
+            RenderSettings.ambientEquatorColor = new Color(0.48f, 0.48f, 0.46f);
+            RenderSettings.ambientGroundColor = new Color(0.22f, 0.2f, 0.18f);
             RenderSettings.fog = fogDensity > 0f;
             RenderSettings.fogMode = FogMode.Exponential;
             RenderSettings.fogDensity = fogDensity;
