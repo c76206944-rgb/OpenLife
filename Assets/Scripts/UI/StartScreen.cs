@@ -27,6 +27,8 @@ namespace OpenLife
         readonly List<SimData> household = new List<SimData>();
         readonly HashSet<string> chosenTraits = new HashSet<string>();
         List<WorldDef> worlds = new List<WorldDef>();
+        List<GameObject> characterPrefabs = new List<GameObject>();
+        int characterModelIndex;
         int worldIndex;
 
         public static StartScreen Create()
@@ -58,6 +60,7 @@ namespace OpenLife
             UIFactory.Label(modsBox, "Mods folder: " + ContentDatabase.ModsPath, 16, TextAnchor.MiddleCenter, new Color(1f, 1f, 1f, 0.5f));
 
             worlds = ContentDatabase.AllWorlds();
+            characterPrefabs = new List<GameObject>(Resources.LoadAll<GameObject>("Characters"));
             if (worlds.Count > 0)
             {
                 settings.worldId = worlds[0].id;
@@ -90,6 +93,7 @@ namespace OpenLife
                 draft.hairHex = old.hairHex;
                 draft.outfitHex = old.outfitHex;
                 draft.hairStyle = old.hairStyle;
+                draft.modelId = old.modelId;
             }
             chosenTraits.Clear();
         }
@@ -268,6 +272,15 @@ namespace OpenLife
             UIFactory.Label(stBox, draft.hairStyle, 24, TextAnchor.MiddleCenter, UIFactory.DarkText);
             RowButton(styleRow, ">", 60f, () => CycleStyle(1), UIFactory.Soft, 26);
 
+            var modelRow = Row(simPanel, 50f);
+            RowLabel(modelRow, "Character model", 190f);
+            RowButton(modelRow, "<", 60f, () => CycleModel(-1), UIFactory.Soft, 26);
+            var modelBox = UIFactory.Box(modelRow, "Model", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(300f, 40f));
+            UIFactory.Size(modelBox, 300f, -1f);
+            string modelLabel = string.IsNullOrEmpty(draft.modelId) ? "Default avatar" : draft.modelId.Replace("Characters/", "");
+            UIFactory.Label(modelBox, characterPrefabs.Count == 0 ? "Default avatar (import models)" : modelLabel, 20, TextAnchor.MiddleCenter, UIFactory.DarkText);
+            RowButton(modelRow, ">", 60f, () => CycleModel(1), UIFactory.Soft, 26);
+
             UIFactory.Line(simPanel, "Traits (pick up to 3): " + chosenTraits.Count + "/3", 20, TextAnchor.MiddleLeft, new Color(0.35f, 0.38f, 0.45f), 26f);
             var grid = UIFactory.Box(simPanel, "Traits", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(800f, 170f));
             UIFactory.Size(grid, -1f, 170f);
@@ -292,6 +305,22 @@ namespace OpenLife
                 var b = RowButton(listRow, sim.name + "  x", 190f, () => { household.Remove(sim); Rebuild(); }, Util.ParseColor(sim.skinHex, Color.gray), 18);
                 Mark(b, false);
             }
+        }
+
+        void CycleModel(int dir)
+        {
+            if (characterPrefabs == null || characterPrefabs.Count == 0)
+            {
+                draft.modelId = "";
+                GameState.Notify("Import rigged prefabs into Assets/Resources/Characters first.");
+                Rebuild();
+                return;
+            }
+            int current = characterPrefabs.FindIndex(p => draft.modelId == "Characters/" + p.name);
+            current = current < 0 ? -1 : current;
+            current = (current + dir + characterPrefabs.Count + 1) % (characterPrefabs.Count + 1);
+            draft.modelId = current == 0 ? "" : "Characters/" + characterPrefabs[current - 1].name;
+            Rebuild();
         }
 
         void CycleStyle(int dir)
