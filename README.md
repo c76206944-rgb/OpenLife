@@ -2,7 +2,7 @@
 
 A 3D life-simulation prototype in Unity: create Sims, build their home, and choose or design the world they live in. Inspired by The Sims, built to be more open, more customizable and more moddable.
 
-See [GAME_DESIGN.md](GAME_DESIGN.md) for the full vision and [MODDING.md](MODDING.md) to add your own content.
+See [GAME_DESIGN.md](GAME_DESIGN.md) for the full vision, [MODDING.md](MODDING.md) to add your own content, and [ART_PIPELINE.md](ART_PIPELINE.md) for the next-generation graphics and asset integration plan.
 
 ## What works in this prototype
 
