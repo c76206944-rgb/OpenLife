@@ -9,26 +9,14 @@ namespace OpenLife
     /// without changing simulation, save data, navigation, or build-mode systems.
     /// Real character and furniture prefabs remain content-swappable.
     /// </summary>
-    [DefaultExecutionOrder(-100)]
+    [DefaultExecutionOrder(100)]
     public sealed class GraphicsQualityProfile : MonoBehaviour
     {
         [SerializeField] bool allowAutomaticQuality = true;
-        static GraphicsQualityProfile instance;
+        bool postProcessingEnabled = true;
 
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-        static void Install()
+        void Start()
         {
-            if (instance != null) return;
-            var go = new GameObject("OpenLife_Graphics");
-            DontDestroyOnLoad(go);
-            instance = go.AddComponent<GraphicsQualityProfile>();
-        }
-
-        void Awake()
-        {
-            if (instance != null && instance != this) { Destroy(gameObject); return; }
-            instance = this;
-            DontDestroyOnLoad(gameObject);
             ApplyQuality();
             ApplyEnvironment();
         }
@@ -39,6 +27,7 @@ namespace OpenLife
             int memory = SystemInfo.systemMemorySize;
             int gpuMemory = SystemInfo.graphicsMemorySize;
             bool lowEnd = mobile && (memory < 4000 || (gpuMemory > 0 && gpuMemory < 1024));
+            postProcessingEnabled = !lowEnd;
 
             if (allowAutomaticQuality)
             {
@@ -64,7 +53,7 @@ namespace OpenLife
                 camera.farClipPlane = mobile ? 180f : 350f;
                 camera.fieldOfView = 48f;
                 var data = camera.GetUniversalAdditionalCameraData();
-                data.renderPostProcessing = !lowEnd;
+                data.renderPostProcessing = postProcessingEnabled;
                 data.antialiasing = mobile
                     ? (lowEnd ? AntialiasingMode.None : AntialiasingMode.FastApproximateAntialiasing)
                     : AntialiasingMode.SubpixelMorphologicalAntialiasing;
@@ -82,9 +71,8 @@ namespace OpenLife
             RenderSettings.defaultReflectionResolution = 128;
 
             var camera = Camera.main;
-            if (camera == null) return;
-            var data = camera.GetUniversalAdditionalCameraData();
-            data.renderPostProcessing = true;
+            if (camera == null || !postProcessingEnabled) return;
+            camera.GetUniversalAdditionalCameraData().renderPostProcessing = true;
 
             var volumeObject = new GameObject("OpenLife_GlobalPostProcessing");
             volumeObject.transform.SetParent(transform, false);
@@ -109,7 +97,6 @@ namespace OpenLife
 
             var tone = profile.Add<Tonemapping>(true);
             tone.mode.Override(TonemappingMode.ACES);
-
             volume.sharedProfile = profile;
         }
     }
