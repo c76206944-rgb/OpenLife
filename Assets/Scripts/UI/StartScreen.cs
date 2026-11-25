@@ -316,8 +316,9 @@ namespace OpenLife
                 Rebuild();
                 return;
             }
-            int current = characterPrefabs.FindIndex(p => draft.modelId == "Characters/" + p.name);
-            current = current < 0 ? -1 : current;
+            int current = string.IsNullOrEmpty(draft.modelId) ? 0 :
+                characterPrefabs.FindIndex(p => draft.modelId == "Characters/" + p.name) + 1;
+            if (current < 0) current = 0;
             current = (current + dir + characterPrefabs.Count + 1) % (characterPrefabs.Count + 1);
             draft.modelId = current == 0 ? "" : "Characters/" + characterPrefabs[current - 1].name;
             Rebuild();
