@@ -53,6 +53,7 @@ namespace OpenLife
 
             var sim = root.AddComponent<SimCharacter>();
             sim.Init(d, visual);
+            root.AddComponent<SimAnimationDriver>().Init(visual, agent, sim);
             ObjectFactory.SetLayer(root, SimLayer);
             root.SetActive(true);
             GameState.Sims.Add(sim);
