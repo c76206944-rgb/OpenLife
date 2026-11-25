@@ -23,6 +23,23 @@ A Sims-level visual result cannot be achieved by changing lighting settings alon
 
 Use assets that you own or have a license to redistribute in the game. Do not commit ripped assets from The Sims or other commercial games.
 
+## Character and furniture prefab conventions
+
+- Add a rigged character prefab under `Assets/Resources/Characters/` (e.g. `AdultFemale_A.prefab`). Set the Sim's `modelId` to `Characters/AdultFemale_A`. The prefab is instantiated under the gameplay Sim root, so its root should be at ground level, face local +Z, and be approximately 1.8–1.9 metres tall.
+- Use a Humanoid-rigged `Animator` with root motion disabled. Keep the visual mesh and Animator below the prefab root; keep gameplay collider and NavMeshAgent on the Sim root. The existing Sim AI and save system remain on the parent root.
+- `SimFactory` now loads `modelId` from Resources and retains a detailed placeholder fallback for old saves and Sims without a model assigned.
+- Add furniture and building prefabs under `Assets/Resources/Furniture/` and use the object's `prefab` Resources-relative path in `objects.json`. Keep interaction definitions and object IDs unchanged so existing save files still resolve.
+
+## Repeatable player builds
+
+Open the project in Unity 6.0.23f1 and use the `OpenLife/Build` menu:
+
+- `Windows x86_64` writes to `Builds/Windows/`.
+- `Android ARM64 APK` writes to `Builds/Android/` (requires Android Build Support, SDK/NDK and OpenJDK modules).
+- `WebGL for Vercel` writes to `Builds/WebGL/` with compression disabled for simple static hosting.
+
+Enable the game scene(s) in Build Profiles / Build Settings first. The WebGL output directory is ignored by Git until you intentionally add a generated build artifact or deploy it from a build pipeline.
+
 ## Prefab integration conventions
 
 - Character prefabs: place under `Assets/Resources/Characters/`; replace the body construction in `Assets/Scripts/Sims/SimFactory.cs` with prefab instantiation while retaining the root `CapsuleCollider`, `NavMeshAgent`, `SimCharacter`, and `SimCharacter.Init(data, visualRoot)` contract.
