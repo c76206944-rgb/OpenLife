@@ -20,6 +20,8 @@ namespace OpenLife
         public string hairHex = "#1b1b1b";
         public string outfitHex = "#7a1f3d";
         public string hairStyle = "bun";
+        // Optional Resources path, e.g. Characters/AdultFemale_A. Empty uses the built-in fallback.
+        public string modelId = "";
         public string[] traitIds = new string[0];
         public float[] needs = { 80f, 80f, 80f, 80f, 80f, 80f };
         public float x, y, z;

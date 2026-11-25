@@ -30,6 +30,8 @@ namespace OpenLife
 
         void Awake()
         {
+            if (GetComponent<GraphicsQualityProfile>() == null)
+                gameObject.AddComponent<GraphicsQualityProfile>();
             ContentDatabase.Load();
             UIFactory.EnsureEventSystem();
 
